@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -15,11 +16,17 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->only('from', 'to', 'data'), [
             'from' => 'required',
             'to' => 'required',
             'data' => 'required'
         ]);
+
+        if ($validator->fails())
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ]);
 
         $event = Event::create($request->only([
             'from', 'to', 'data'

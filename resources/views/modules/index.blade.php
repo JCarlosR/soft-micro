@@ -8,12 +8,6 @@
                 <div class="panel-heading">Módulos</div>
 
                 <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -36,6 +30,47 @@
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Nuevo móudlo</div>
+
+                <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form action="" method="post">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="IMEI">IMEI</label>
+                            <input type="text" id="IMEI" class="form-control" name="IMEI" value="{{ old('IMEI') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Tipo</label>
+                            <select name="type" id="type" required class="form-control">
+                                <option value="GSM">GSM</option>
+                                <option value="WiFi">WiFi</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" class="form-control" name="username" value="{{ old('username') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" name="password" value="">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Registrar módulo
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

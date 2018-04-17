@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -26,6 +27,11 @@ class HeartBeatController extends Controller
         $saved = $client->save();
 
         $data['success'] = $saved;
+        if ($saved) {
+            $data['events'] = Event::where('to', $client->IMEI)->get([
+                'id', 'from', 'to', 'data', 'created_at'
+            ]);
+        }
         return $data;
     }
 }

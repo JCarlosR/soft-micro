@@ -24,9 +24,13 @@ class ClientController extends Controller
         ]);
         $data['password'] = bcrypt($data['password']);
 
-        Client::create($data);
+        $client = Client::create($data);
 
-        $notification = 'Cliente registrado correctamente.';
+        if ($client->phoneNumber)
+            $status = 'Cliente registrado correctamente.';
+        else
+            $status = 'Módulo registrado correctamente.';
+
         return back()->with(compact('status'));
     }
 }
