@@ -51,11 +51,11 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="IMEI">IMEI</label>
-                            <input type="text" id="IMEI" class="form-control" name="IMEI" value="{{ old('IMEI') }}">
+                            <input type="text" id="IMEI" class="form-control" name="IMEI" value="{{ old('IMEI') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="phoneNumber"># Teléfono</label>
-                            <input type="text" id="phoneNumber" class="form-control" name="phoneNumber" value="{{ old('phoneNumber') }}">
+                            <input type="text" id="phoneNumber" class="form-control" name="phoneNumber" value="{{ old('phoneNumber') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="type">Tipo</label>
@@ -67,11 +67,11 @@
                         </div>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" id="username" class="form-control" name="username" value="{{ old('username') }}">
+                            <input type="text" id="username" class="form-control" name="username" value="{{ old('username') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" class="form-control" name="password" value="">
+                            <input type="text" class="form-control" name="password" value="" required>
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Registrar cliente
