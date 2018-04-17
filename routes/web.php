@@ -16,6 +16,7 @@ Route::post('/modules', 'ClientController@store');
 
 Route::get('/events', 'EventController@index');
 Route::get('/events/create', 'EventController@store');
+Route::get('/events/complete', 'EventController@complete');
 
 Route::get('/heart-beats/create', 'HeartBeatController@store');
 

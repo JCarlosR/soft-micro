@@ -35,4 +35,26 @@ class EventController extends Controller
         $data['success'] = ($event != null);
         return $data;
     }
+
+    public function complete(Request $request)
+    {
+        $validator = Validator::make($request->only('from'), [
+            'from' => 'required'
+        ]);
+
+        if ($validator->fails())
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ]);
+
+        $events = Event::where('to', $request->input('from'))->get();
+        $deleted = false;
+        foreach ($events as $event) {
+            $deleted = $event->delete();
+        }
+
+        $data['success'] = $deleted;
+        return $data;
+    }
 }

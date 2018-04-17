@@ -13,7 +13,7 @@ class HeartBeatController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->only('from'), [
-            'from' => 'required|exists:clients,IMEI'
+            'from' => 'required'//|exists:clients,IMEI'
         ]);
 
         if ($validator->fails())
@@ -29,7 +29,7 @@ class HeartBeatController extends Controller
         $data['success'] = $saved;
         if ($saved) {
             $data['events'] = Event::where('to', $client->IMEI)->get([
-                'id', 'from', 'to', 'data', 'created_at'
+                'from', 'data'
             ]);
         }
         return $data;
