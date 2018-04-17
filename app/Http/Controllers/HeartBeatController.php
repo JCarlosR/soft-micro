@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class HeartBeatController extends Controller
 {
     public function store(Request $request)
-    {
+    {   // dd($request->all());
         $validator = Validator::make($request->only('from'), [
             'from' => 'required'//|exists:clients,IMEI'
         ]);
@@ -22,13 +22,16 @@ class HeartBeatController extends Controller
                 'errors' => $validator->errors()
             ]);
 
-        $client = Client::where('IMEI', $request->input('from'))->firstOrFail();
-        $client->lastRequest = Carbon::now();
-        $saved = $client->save();
+        $client = Client::where('IMEI', $request->input('from'))->first(); // OrFail
+        $saved = true;
+        if ($client) {
+            $client->lastRequest = Carbon::now();
+            $saved = $client->save();
+        }
 
         $data['success'] = $saved;
-        if ($saved) {
-            $data['events'] = Event::where('to', $client->IMEI)->get([
+        if ($saved) { // $client->IMEI
+            $data['events'] = Event::where('to', $request->input('from'))->get([
                 'from', 'data'
             ]);
         }
