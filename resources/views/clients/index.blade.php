@@ -30,9 +30,10 @@
                                 <td>{{ $client->username }}</td>
                                 <td>{{ $client->created_at }}</td>
                                 <td>
-                                    <form action="">
+                                    <form action="" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
+                                        <input type="hidden" name="client_id" value="{{ $client->id }}">
                                         <button type="submit" class="btn btn-danger">
                                             Eliminar
                                         </button>

@@ -57,4 +57,12 @@ class EventController extends Controller
         $data['success'] = $deleted;
         return $data;
     }
+
+    public function destroy(Request $request)
+    {
+        $event = Event::find($request->input('event_id'));
+        $event->delete();
+
+        return back();
+    }
 }

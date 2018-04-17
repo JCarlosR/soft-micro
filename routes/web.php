@@ -17,6 +17,7 @@ Route::post('/modules', 'ClientController@store');
 Route::delete('/modules', 'ClientController@delete');
 
 Route::get('/events', 'EventController@index');
+Route::delete('/events', 'EventController@destroy');
 Route::get('/events/create', 'EventController@store');
 Route::get('/events/complete', 'EventController@complete');
 

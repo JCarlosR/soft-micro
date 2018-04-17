@@ -20,6 +20,7 @@
                             <th>Enviado por</th>
                             <th>Para</th>
                             <th>Fecha de envío</th>
+                            <th>Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,6 +29,14 @@
                                 <td>{{ $event->from }}</td>
                                 <td>{{ $event->to }}</td>
                                 <td>{{ $event->created_at }}</td>
+                                <form action="" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                    <button type="submit" class="btn btn-danger">
+                                        Eliminar
+                                    </button>
+                                </form>
                             </tr>
                         @endforeach
                         </tbody>

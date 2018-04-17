@@ -28,9 +28,10 @@
                                 <td>{{ $module->username }}</td>
                                 <td>{{ $module->created_at }}</td>
                                 <td>
-                                    <form action="">
+                                    <form action="" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
+                                        <input type="hidden" name="client_id" value="{{ $module->id }}">
                                         <button type="submit" class="btn btn-danger">
                                             Eliminar
                                         </button>
