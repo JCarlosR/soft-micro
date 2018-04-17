@@ -16,6 +16,7 @@
                             <th>Tipo</th>
                             <th>Username</th>
                             <th>Fecha creación</th>
+                            <th>Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,6 +27,15 @@
                                 <td>{{ $module->type }}</td>
                                 <td>{{ $module->username }}</td>
                                 <td>{{ $module->created_at }}</td>
+                                <td>
+                                    <form action="">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -33,4 +33,12 @@ class ClientController extends Controller
 
         return back()->with(compact('status'));
     }
+
+    public function delete(Request $request)
+    {
+        $client = Client::find($request->input('client_id'));
+        $client->delete();
+
+        return back();
+    }
 }
