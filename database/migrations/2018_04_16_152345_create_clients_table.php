@@ -15,16 +15,18 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
-
             $table->string('IMEI', 16);
-            $table->string('phoneNumber', 13);
+
+            // null-able for modules
+            $table->string('phoneNumber', 13)->nullable();
+
             $table->dateTime('lastRequest')->nullable();
             $table->string('type', 5);
             $table->boolean('status')->default(false);
 
             $table->string('username', 25);
             $table->string('password');
-            $table->string('admin_password');
+            $table->string('admin_password')->nullable();
 
             $table->timestamps();
         });

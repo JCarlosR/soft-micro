@@ -17,10 +17,10 @@
                     <p>Bienvenido {{ auth()->user()->name }}!</p>
                     <p>Selecciona una opción de tu interés:</p>
 
-                    <a href="" class="btn btn-primary btn-bg btn-block">
+                    <a href="{{ url('/clients') }}" class="btn btn-primary btn-bg btn-block">
                         Consultar Clientes
                     </a>
-                    <a href="" class="btn btn-primary btn-bg btn-block">
+                    <a href="{{ url('/modules') }}" class="btn btn-primary btn-bg btn-block">
                         Consultar Módulos
                     </a>
                     <a href="{{ url('/events') }}" class="btn btn-primary btn-bg btn-block">
