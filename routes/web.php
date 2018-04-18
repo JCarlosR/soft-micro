@@ -23,3 +23,6 @@ Route::get('/events/complete', 'EventController@complete');
 
 Route::get('/heart-beats/create', 'HeartBeatController@store');
 
+Route::get('/example/txt', 'ExampleResponseController@txt');
+Route::get('/example/html', 'ExampleResponseController@html');
+Route::get('/example/json', 'ExampleResponseController@json');
