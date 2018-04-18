@@ -22,7 +22,11 @@ class HeartBeatController extends Controller
                 'errors' => $validator->errors()
             ]);
 
-        $client = Client::where('IMEI', $request->input('from'))->first(); // OrFail
+        if ($request->input('fromPhone') == 1) {
+            $client = Client::where('phoneNumber', $request->input('from'))->first(); // OrFail
+        } else {
+            $client = Client::where('IMEI', $request->input('from'))->first(); // OrFail
+        }
         $saved = true;
         if ($client) {
             $client->lastRequest = Carbon::now();

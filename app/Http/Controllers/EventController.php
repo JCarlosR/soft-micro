@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -28,9 +29,20 @@ class EventController extends Controller
                 'errors' => $validator->errors()
             ]);
 
-        $event = Event::create($request->only([
+        $info = $request->only([
             'from', 'to', 'data'
-        ]));
+        ]);
+
+        if ($request->has('fromPhone')) {
+            $client = Client::where('phoneNumber', $request->input('from'))->first(); // OrFail
+            $info['from'] = ($client ? $client->IMEI : '');
+        }
+        if ($request->has('toPhone')) {
+            $client = Client::where('phoneNumber', $request->input('to'))->first(); // OrFail
+            $info['to'] = ($client ? $client->IMEI : '');
+        }
+
+        $event = Event::create($info);
 
         $data['success'] = ($event != null);
         return $data;

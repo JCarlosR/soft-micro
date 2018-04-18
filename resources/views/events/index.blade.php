@@ -19,6 +19,7 @@
                         <tr>
                             <th>Enviado por</th>
                             <th>Para</th>
+                            <th>Mensaje</th>
                             <th>Fecha de envío</th>
                             <th>Opciones</th>
                         </tr>
@@ -28,6 +29,7 @@
                             <tr>
                                 <td>{{ $event->from }}</td>
                                 <td>{{ $event->to }}</td>
+                                <td>{{ $event->data }}</td>
                                 <td>{{ $event->created_at }}</td>
                                 <td>
                                     <form action="" method="post">
