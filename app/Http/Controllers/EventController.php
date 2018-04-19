@@ -60,11 +60,11 @@ class EventController extends Controller
                 'errors' => $validator->errors()
             ]);
 
-        $events = Event::where('to', $request->input('from'))->get();
-        $deleted = false;
-        foreach ($events as $event) {
+        $event = Event::where('to', $request->input('from'))->first();
+        if ($event)
             $deleted = $event->delete();
-        }
+        else
+            $deleted = false;
 
         $data['success'] = $deleted;
         return $data;
