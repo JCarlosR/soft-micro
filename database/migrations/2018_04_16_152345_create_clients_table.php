@@ -21,11 +21,11 @@ class CreateClientsTable extends Migration
             $table->string('phoneNumber', 13)->nullable();
 
             $table->dateTime('lastRequest')->nullable();
-            $table->string('type', 5);
+            $table->string('type', 20)->default('Desconocido');
             $table->boolean('status')->default(false);
 
-            $table->string('username', 25);
-            $table->string('password');
+            $table->string('username', 25)->nullable();
+            $table->string('password')->nullable();
             $table->string('admin_password')->nullable();
 
             $table->timestamps();
