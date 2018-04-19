@@ -35,7 +35,7 @@ class HeartBeatController extends Controller
 
         $data['success'] = $saved;
         if ($saved) { // $client->IMEI
-            $data['eventCount'] = Event::where('to', $request->input('from'))->count();
+            // $data['eventCount'] = Event::where('to', $request->input('from'))->count();
             $data['event'] = Event::where('to', $request->input('from'))
                 ->first(['from', 'data']);
         }
