@@ -13,15 +13,12 @@ class LogAfterRequest {
 
     public function terminate($request, $response)
     {
-        $httpRequest = new HttpRequest();
-        $httpRequest->request = $request->fullUrl();
-
         if ($response->headers->get('Content-Type') == 'application/json') {
+            $httpRequest = new HttpRequest();
+            $httpRequest->request = $request->fullUrl();
             $httpRequest->response = $response->getContent();
-        } else {
-            $httpRequest->response = 'No es una respuesta JSON.';
+            $httpRequest->save();
         }
-        $httpRequest->save();
     }
 
 }
