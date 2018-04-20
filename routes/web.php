@@ -14,6 +14,7 @@ Route::delete('/clients', 'ClientController@delete');
 
 Route::get('/clients/create', 'API\ClientController@store');
 Route::get('/clients/edit', 'API\ClientController@update');
+Route::get('/clients/associate', 'API\ClientController@associate');
 
 Route::get('/modules', 'ModuleController@index');
 Route::post('/modules', 'ClientController@store');

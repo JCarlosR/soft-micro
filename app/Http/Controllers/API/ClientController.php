@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Client;
+use App\PhoneModule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -59,5 +60,22 @@ class ClientController extends Controller
         $data = [];
         $data['success'] = $updated;
         return $data;
+    }
+
+    public function associate(Request $request)
+    {
+        $data = $request->only([
+            'phone',
+            'module'
+        ]);
+        $phone = Client::where('IMEI', $data['phone'])->first();
+        $module = Client::where('IMEI', $data['module'])->first();
+
+        $phoneModule = new PhoneModule();
+        $phoneModule->phone_id = $phone->id;
+        $phoneModule->module_id = $module->id;
+        $phoneModule->save();
+
+        return back();
     }
 }

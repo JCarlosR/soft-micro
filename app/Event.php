@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['from', 'to', 'data'];
+    protected $fillable = ['from', 'to', 'data', 'is_response'];
 }

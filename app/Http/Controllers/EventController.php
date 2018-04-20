@@ -11,8 +11,10 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
-        return view('events.index', compact('events'));
+        $requests = Event::where('is_response', false)->get();
+        $responses = Event::where('is_response', true)->get();
+
+        return view('events.index', compact('requests', 'responses'));
     }
 
     public function store(Request $request)
@@ -30,8 +32,13 @@ class EventController extends Controller
             ]);
 
         $info = $request->only([
-            'from', 'to', 'data'
+            'from', 'to', 'data', 'isResponse'
         ]);
+
+        if ($request->has('isResponse')) {
+            $info['is_response'] = true;
+            unset($info['isResponse']);
+        }
 
         if ($request->has('fromPhone')) {
             $client = Client::where('phoneNumber', $request->input('from'))->first(); // OrFail

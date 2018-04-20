@@ -13,4 +13,9 @@ class Client extends Model
         'username',
         'password'
     ];
+
+//    public function clients()
+//    {
+//        return $this->belongsTo(Client::class);
+//    }
 }
