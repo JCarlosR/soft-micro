@@ -8,6 +8,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/log', 'LogController@index');
+
 Route::get('/clients', 'ClientController@index');
 Route::post('/clients', 'ClientController@store');
 Route::delete('/clients', 'ClientController@delete');

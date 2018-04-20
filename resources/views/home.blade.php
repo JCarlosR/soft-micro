@@ -26,6 +26,9 @@
                     <a href="{{ url('/events') }}" class="btn btn-primary btn-bg btn-block">
                         Consultar Eventos
                     </a>
+                    <a href="{{ url('/log') }}" class="btn btn-primary btn-bg btn-block">
+                        Consultar Log
+                    </a>
                 </div>
             </div>
         </div>
